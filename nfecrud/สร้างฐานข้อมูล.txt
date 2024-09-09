@@ -1,0 +1,149 @@
+CREATE TABLE reports (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    subdistrict VARCHAR(255) NOT NULL,
+    quarter INT NOT NULL,
+    fiscal_year INT NOT NULL,
+    activity_type VARCHAR(255) NOT NULL,
+    activity_name VARCHAR(255) NOT NULL,
+    course_hours INT NOT NULL,
+    profession_group VARCHAR(255) NOT NULL,
+    budget DECIMAL(10, 2) NOT NULL,
+    male_registration INT NOT NULL,
+    female_registration INT NOT NULL,
+    total_registration INT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    total_male_trainees INT NOT NULL,
+    total_female_trainees INT NOT NULL,
+    total_trainees INT NOT NULL,
+    male_under_15 INT NOT NULL,
+    female_under_15 INT NOT NULL,
+    male_15_29 INT NOT NULL,
+    female_15_29 INT NOT NULL,
+    male_30_39 INT NOT NULL,
+    female_30_39 INT NOT NULL,
+    male_40_49 INT NOT NULL,
+    female_40_49 INT NOT NULL,
+    male_50_59 INT NOT NULL,
+    female_50_59 INT NOT NULL,
+    male_60_above INT NOT NULL,
+    female_60_above INT NOT NULL,
+    total_male_trainees_knowledge INT NOT NULL,
+    total_female_trainees_knowledge INT NOT NULL,
+    total_trainees_knowledge INT NOT NULL,
+    male_create_job INT NOT NULL,
+    female_create_job INT NOT NULL,
+    male_increase_income INT NOT NULL,
+    female_increase_income INT NOT NULL,
+    male_quality_life INT NOT NULL,
+    female_quality_life INT NOT NULL,
+    male_local_wisdom INT NOT NULL,
+    female_local_wisdom INT NOT NULL,
+    male_community_enterprise INT NOT NULL,
+    female_community_enterprise INT NOT NULL,
+    male_value_addition INT NOT NULL,
+    female_value_addition INT NOT NULL,
+    total_male_income INT NOT NULL,
+    total_female_income INT NOT NULL,
+    total_income INT NOT NULL,
+    male_income_below_3000 INT NOT NULL,
+    female_income_below_3000 INT NOT NULL,
+    male_income_3001_5000 INT NOT NULL,
+    female_income_3001_5000 INT NOT NULL,
+    male_income_5001_10000 INT NOT NULL,
+    female_income_5001_10000 INT NOT NULL,
+    male_income_10001_15000 INT NOT NULL,
+    female_income_10001_15000 INT NOT NULL,
+    male_income_15001_30000 INT NOT NULL,
+    female_income_15001_30000 INT NOT NULL,
+    male_income_30001_50000 INT NOT NULL,
+    female_income_30001_50000 INT NOT NULL,
+    male_income_50001_100000 INT NOT NULL,
+    female_income_50001_100000 INT NOT NULL,
+    male_income_above_100000 INT NOT NULL,
+    female_income_above_100000 INT NOT NULL,
+    problem_issues TEXT NOT NULL,
+    suggestions TEXT NOT NULL,
+    image1 VARCHAR(255) DEFAULT NULL,
+    image2 VARCHAR(255) DEFAULT NULL,
+    image3 VARCHAR(255) DEFAULT NULL,
+    image4 VARCHAR(255) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+<?php
+session_start();
+include('../connection.php');
+
+// ตรวจสอบว่าผู้ใช้เข้าสู่ระบบแล้วหรือไม่
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$username = $_SESSION['username'];
+
+// ดึงข้อมูล amphoe_name จากตาราง tambon ที่มี code ตรงกับ username
+$query = "SELECT amphoe_name FROM tambon WHERE code = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
+$amphoe_name = '';
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $amphoe_name = $row['amphoe_name'];
+} else {
+    $amphoe_name = "ไม่พบข้อมูลอำเภอ";
+}
+
+// ฟังก์ชันการอัปโหลดไฟล์
+function uploadImage($file, $target_dir, $filename_base, $index) {
+    if (empty($file["name"])) {
+        return null; // กรณีที่ไม่มีการอัปโหลดไฟล์
+    }
+
+    $imageFileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
+    $target_file = $target_dir . $filename_base . $index . "." . $imageFileType;
+
+    // ตรวจสอบว่าเป็นไฟล์ภาพหรือไม่
+    $check = getimagesize($file["tmp_name"]);
+    if ($check === false) {
+        return null;
+    }
+
+    // ตรวจสอบขนาดไฟล์
+    if ($file["size"] > 5000000) {  // 5MB
+        return null;
+    }
+
+    // อนุญาตเฉพาะบางรูปแบบไฟล์
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        return null;
+    }
+
+    // ตรวจสอบว่าทุกอย่างผ่านหรือไม่
+    if (move_uploaded_file($file["tmp_name"], $target_file)) {
+        return basename($target_file);
+    } else {
+        return null;
+    }
+}
+
+
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";  35
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 39
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";  45
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";  48
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";   64
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";  66
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";  70
+$stmt->bind_param("sssssssisiisssiiiiiiiiiiiiiiiiiiiii",  35
+$stmt->bind_param("sssssssisiisssiiiiiiiiiiiiiiiiiiiiiiiii",  39
+$stmt->bind_param("sssssssisiisssiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii", 45
+$stmt->bind_param("sssssssisiisssiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",  48
+$stmt->bind_param("sssssssisiisssiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",  64
+$stmt->bind_param("sssssssisiisssiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiss",  66
+$stmt->bind_param("sssssssisiisssiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiissssss",  70

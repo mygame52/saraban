@@ -1,0 +1,116 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.navbar-light {
+    background-color: #8e44ad !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #fff !important;
+}
+
+.navbar-nav .nav-link {
+    color: #fff !important;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    background-color: #6c3483;
+    border-radius: 5px;
+}
+
+.navbar-text {
+    color: #fff;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.status-btn {
+    padding: 6px 12px;
+    border-radius: 25px;
+    color: #fff;
+    margin: 0 2px;
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.status-btn.continuous {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.status-btn.continuous:hover {
+    background-color: #218838;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.status-btn.finance {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.status-btn.finance:hover {
+    background-color: #0069d9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.status-btn.logistics {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.status-btn.logistics:hover {
+    background-color: #e0a800;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.status-btn.continuous-edit,
+.status-btn.finance-edit,
+.status-btn.logistics-edit {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.status-btn.continuous-edit:hover,
+.status-btn.finance-edit:hover,
+.status-btn.logistics-edit:hover {
+    background-color: #c82333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+table.dataTable {
+    width: 100% !important;
+}
+
+h4 {
+    color: #333;
+    font-weight: bold;
+}

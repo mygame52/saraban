@@ -1,0 +1,30 @@
+        .status-btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            color: #fff;
+        }
+
+        .status-btn.continuous {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .status-btn.finance {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .status-btn.logistics {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+
+        .status-btn.continuous-edit,
+        .status-btn.finance-edit,
+        .status-btn.logistics-edit {
+            background-color: #dc3545;
+            /* เปลี่ยนเป็นสีแดง */
+            border-color: #dc3545;
+            /* เปลี่ยนเป็นสีแดง */
+        }
+  

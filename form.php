@@ -1,3 +1,29 @@
+<?php
+session_start();
+include('connection.php'); // เชื่อมต่อฐานข้อมูล
+
+// ตรวจสอบว่าผู้ใช้เข้าสู่ระบบแล้วหรือไม่
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$username = $_SESSION['username'];
+
+// ตรวจสอบ role ของผู้ใช้
+$sql = "SELECT role FROM users WHERE username = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$stmt->bind_result($role);
+$stmt->fetch();
+$stmt->close();
+
+if ($role != 1) {
+    header("Location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="th">
 
@@ -5,6 +31,7 @@
     <title>บันทึกรับเอกสารต่อเนื่อง</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
     <style>
         body {
             background-color: #f8f9fa;
@@ -65,29 +92,29 @@
                 <label for="district" class="form-label">สกร.ระดับอำเภอ:</label>
                 <select class="form-select" id="district" name="district" required>
                     <option value="เลือก">เลือกอำเภอ</option>
-                    <option value="จุฬาภรณ์">จุฬาภรณ์</option>
-                    <option value="ฉวาง">ฉวาง</option>
-                    <option value="ขนอม">ขนอม</option>
-                    <option value="เฉลิมพระเกียรติ">เฉลิมพระเกียรติ</option>
-                    <option value="ชะอวด">ชะอวด</option>
-                    <option value="ช้างกลาง">ช้างกลาง</option>
-                    <option value="เชียรใหญ่">เชียรใหญ่</option>
-                    <option value="ถ้ำพรรณรา">ถ้ำพรรณรา</option>
-                    <option value="ท่าศาลา">ท่าศาลา</option>
-                    <option value="ทุ่งสง">ทุ่งสง</option>
-                    <option value="ทุ่งใหญ่">ทุ่งใหญ่</option>
-                    <option value="นบพิตำ">นบพิตำ</option>
-                    <option value="นาบอน">นาบอน</option>
-                    <option value="บางขัน">บางขัน</option>
-                    <option value="ปากพนัง">ปากพนัง</option>
-                    <option value="พรหมคีรี">พรหมคีรี</option>
-                    <option value="พระพรหม">พระพรหม</option>
-                    <option value="พิปูน">พิปูน</option>
-                    <option value="เมืองนครศรีธรรมราช">เมืองนครศรีธรรมราช</option>
-                    <option value="ลานสกา">ลานสกา</option>
-                    <option value="สิชล">สิชล</option>
-                    <option value="หัวไทร">หัวไทร</option>
-                    <option value="ร่อนพิบูลย์">ร่อนพิบูลย์</option>
+                    <option value="1280190000">จุฬาภรณ์</option>
+                    <option value="1280040000">ฉวาง</option>
+                    <option value="1280150000">ขนอม</option>
+                    <option value="1280230000">เฉลิมพระเกียรติ</option>
+                    <option value="1280070000">ชะอวด</option>
+                    <option value="1280220000">ช้างกลาง</option>
+                    <option value="1280060000">เชียรใหญ่</option>
+                    <option value="1280180000">ถ้ำพรรณรา</option>
+                    <option value="1280080000">ท่าศาลา</option>
+                    <option value="1280090000">ทุ่งสง</option>
+                    <option value="1280110000">ทุ่งใหญ่</option>
+                    <option value="1280210000">นบพิตำ</option>
+                    <option value="1280100000">นาบอน</option>
+                    <option value="1280170000">บางขัน</option>
+                    <option value="1280120000">ปากพนัง</option>
+                    <option value="1280020000">พรหมคีรี</option>
+                    <option value="1280200001">พระพรหม</option>
+                    <option value="1280050000">พิปูน</option>
+                    <option value="1280010000">เมืองนครศรีธรรมราช</option>
+                    <option value="1280030000">ลานสกา</option>
+                    <option value="1280140000">สิชล</option>
+                    <option value="1280160000">หัวไทร</option>
+                    <option value="1280130000">ร่อนพิบูลย์</option>
                 </select>
             </div>
 

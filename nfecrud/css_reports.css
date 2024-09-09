@@ -1,0 +1,166 @@
+body {
+    background-color: #f4f6f9;
+    font-family: 'Sarabun', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.form-section {
+    background-color: #ffffff;
+    padding: 30px; /* เพิ่ม Padding ให้ฟอร์มดูโปร่งขึ้น */
+    border-radius: 15px;
+    margin-bottom: 30px; /* เพิ่ม Margin ระหว่าง Sections */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* ปรับ Box-shadow ให้เด่นขึ้น */
+    transition: transform 0.3s ease;
+}
+
+.form-section:hover {
+    transform: translateY(-5px); /* เพิ่ม Effect เลื่อนขึ้นเล็กน้อยเมื่อ Hover */
+}
+
+.form-title {
+    margin-bottom: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.65rem; /* ขยายขนาด Font ให้เด่นขึ้น */
+    color: #007bff;
+}
+
+.icon-color-yellow {
+    color: #ffc107;
+}
+
+.icon-color-green {
+    color: #28a745;
+}
+
+.icon-color-blue {
+    color: #007bff;
+}
+
+.icon-color-red {
+    color: #dc3545;
+}
+
+.upload-box {
+    border: 2px dashed #ced4da;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    background-color: #f8f9fa; /* เพิ่มพื้นหลังสีอ่อนเพื่อเน้น */
+    transition: all 0.3s ease;
+}
+
+.upload-box:hover {
+    background-color: #e9ecef;
+    border-color: #007bff; /* เปลี่ยนสีขอบเมื่อ Hover */
+    transform: scale(1.02); /* เพิ่ม Effect ขยายเล็กน้อยเมื่อ Hover */
+}
+
+.img-preview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: none;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.submit-button {
+    text-align: center;
+    margin-top: 30px; /* เพิ่ม Margin ให้ปุ่มแยกออกจากฟอร์ม */
+}
+
+.textarea-error {
+    border-color: #dc3545;
+    background-color: #f8d7da; /* เพิ่มพื้นหลังสีอ่อนเมื่อเกิดข้อผิดพลาด */
+}
+
+.textarea-suggestion {
+    border-color: #28a745;
+    background-color: #d4edda; /* เพิ่มพื้นหลังสีอ่อนเมื่อเป็น Suggestion */
+}
+
+.input-group-text {
+    width: 60px !important; /* บังคับให้ช่องข้อความมีขนาดแคบลง */
+    padding: 5px 8px !important; /* ลด Padding ให้เล็กลง */
+    font-size: 0.9rem !important; /* ลดขนาดฟอนต์ลง */
+    text-align: center !important;
+    background-color: #e9ecef !important;
+    border-radius: 5px !important;
+}
+
+.input-group .form-control {
+    border-radius: 8px;
+    padding: 5px !important; /* ลด Padding ของ Input ให้เล็กลง */
+}
+
+.input-group {
+    margin-right: 0px !important; /* ลบระยะห่างด้านขวาระหว่าง input-group */
+}
+
+.input-group:not(:last-child) {
+    margin-right: 2px; /* เพิ่มระยะห่างเล็กน้อยระหว่างช่อง */
+}
+.form-check-input {
+    margin-right: 10px;
+}
+
+.form-check-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: #555; /* เปลี่ยนสีตัวอักษร */
+}
+
+.is-invalid {
+    border-color: #dc3545;
+    background-color: #f8d7da; /* เพิ่มพื้นหลังสีอ่อนเมื่อมีข้อผิดพลาด */
+}
+
+#alertMessage {
+    display: none;
+    color: #dc3545;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+h5.form-title i {
+    font-size: 2rem; /* ขยายขนาดไอคอนให้เด่นขึ้น */
+}
+
+.input-group-text {
+    width: 100px; /* ปรับขนาดให้ใหญ่ขึ้น */
+}
+
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+        gap: 15px; /* เพิ่มช่องว่างระหว่าง Input */
+    }
+
+    .input-group-text {
+        width: 100%;
+        text-align: center; /* จัดข้อความให้กึ่งกลางในหน้าจอเล็ก */
+    }
+
+    .input-group .form-control {
+        width: 100%;
+    }
+}
